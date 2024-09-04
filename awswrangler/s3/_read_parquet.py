@@ -6,6 +6,8 @@ import datetime
 import functools
 import itertools
 import logging
+import gc
+from memory_profiler import profile
 import warnings
 from typing import (
     TYPE_CHECKING,
@@ -212,7 +214,7 @@ def _read_parquet_file(
             path_root=path_root,
         )
 
-
+@profile
 def _read_parquet_chunked(
     s3_client: "S3Client" | None,
     paths: list[str],
